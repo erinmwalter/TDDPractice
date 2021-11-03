@@ -70,35 +70,73 @@ namespace TDDPractice
         //    Assert.Equal(expected, actual);
         //}
 
+        //[Theory]
+        //[InlineData(1, "I")]
+        //[InlineData(3, "III")]
+        //[InlineData(4, "IV")]
+        //[InlineData(5, "V")]
+        //[InlineData(6, "VI")]
+        //[InlineData(9, "IX")]
+        //[InlineData(10, "X")]
+        //[InlineData(11, "XI")]
+        //[InlineData(14, "XIV")]
+        //[InlineData(40, "XL")]
+        //[InlineData(75, "LXXV")]
+        //[InlineData(105, "CV")]
+        //[InlineData(888, "DCCCLXXXVIII")]
+        //[InlineData(999, "CMXCIX")]
+        //[InlineData(2222, "MMCCXXII")]
+        //[InlineData(2008, "MMVIII")]
+        //[InlineData(50, "L")]
+
+        //public void TestingRomanNumerals(int num, string expected)
+        //{
+        //    //arrange
+        //    RomanNumerialsKata myRN = new RomanNumerialsKata();
+        //    string actual = myRN.RomanNumeral(num);
+
+        //    //assert
+        //    Assert.Equal(expected, actual);
+        //}
+
         [Theory]
-        [InlineData(1, "I")]
-        [InlineData(3, "III")]
-        [InlineData(4, "IV")]
-        [InlineData(5, "V")]
-        [InlineData(6, "VI")]
-        [InlineData(9, "IX")]
-        [InlineData(10, "X")]
-        [InlineData(11, "XI")]
-        [InlineData(14, "XIV")]
-        [InlineData(40, "XL")]
-        [InlineData(75, "LXXV")]
-        [InlineData(105, "CV")]
-        [InlineData(888, "DCCCLXXXVIII")]
-        [InlineData(999, "CMXCIX")]
-        [InlineData(2222, "MMCCXXII")]
-        [InlineData(2008, "MMVIII")]
-        [InlineData(50, "L")]
+        [InlineData('A', "")]
+        [InlineData('B', " ")]
+        [InlineData('D', "   ")]
 
-        public void TestingRomanNumerals(int num, string expected)
+        public void TestGetInsideSpaces(char letter, string expected)
         {
-            //arrange
-            RomanNumerialsKata myRN = new RomanNumerialsKata();
-            string actual = myRN.RomanNumeral(num);
+            Diamond d = new Diamond();
+            string actual = d.GetInsideSpaces(letter);
 
-            //assert
+            //Assert
             Assert.Equal(expected, actual);
         }
 
+        [Theory]
+        [InlineData('A', 'B', " ")]
+        [InlineData('A', 'D', "   ")]
 
+        public void TestGetOutsideSpaces(char current, char letter, string expected)
+        {
+            Diamond d = new Diamond();
+            string actual = d.GetOutsideSpaces(current, letter);
+
+            Assert.Equal(expected, actual);
+        }
+
+        [Theory]
+        [InlineData('A',  "A")]
+        [InlineData('B', " A\nB B\n A")]
+        [InlineData('C', "  A\n B B\nC  C\n B B\n  A")]
+        [InlineData('E', "    A\n   B B\n  C  C\n D   D\nE    E\n D   D\n  C  C\n   B B\n    A")]
+
+        public void TestGetDiamond(char letter, string expected)
+        {
+            Diamond d = new Diamond();
+            string actual = d.GetDiamond(letter);
+
+            Assert.Equal(expected, actual);
+        }
     }
 }
